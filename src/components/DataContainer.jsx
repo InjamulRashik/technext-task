@@ -18,14 +18,14 @@ function DataContainer(props) {
   ) : (
     <div>
       <div className="container">
-        <h1 className="text-center">Technext-Task</h1>
+        <h1 className="text-center pt-4 fw-bold ">Technext-Task</h1>
         <div className="container d-flex justify-content-center">
           <input
-            className="form-control w-50 p-2 mb-4 mt-4"
+            className="form-control fs-5 w-25 py-2 px-4 mb-4 mt-4 rounded-pill border border-4 border-danger "
             type="text"
             name=""
             id=""
-            placeholder="Search By Rocket Name"
+            placeholder="🔍 Search By Rocket Name "
             onChange={(event) => {
               setSearch(event.target.value);
             }}
@@ -45,6 +45,7 @@ function DataContainer(props) {
                 ) {
                   return data;
                 }
+                return 0;
               })
               .map((data) => <Home key={data.mission_name} data={data}></Home>)}
         </div>
