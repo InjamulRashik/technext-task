@@ -11,10 +11,10 @@ export const fetchDataRequest = () => {
   };
 };
 
-export const fetchDataSuccess = (data) => {
+export const fetchDataSuccess = (apiData) => {
   return {
     type: FETCH_DATA_SUCCESS,
-    payload: data,
+    payload: apiData,
   };
 };
 
@@ -31,8 +31,8 @@ export const fetchData = () => {
     axios
       .get("https://api.spacexdata.com/v3/launches")
       .then((response) => {
-        const data = response.data;
-        dispatch(fetchDataSuccess(data));
+        const apiData = response.data;
+        dispatch(fetchDataSuccess(apiData));
       })
       .catch((error) => {
         const erroMessage = error.message;

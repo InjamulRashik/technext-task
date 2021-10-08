@@ -6,11 +6,11 @@ import {
 
 const initialState = {
   loading: false,
-  data: [],
+  apiData: [],
   error: "",
 };
 
-const dataReducer = (state = initialState, action) => {
+export const dataReducer = (state = initialState, action) => {
   switch (action.type) {
     case FETCH_DATA_REQUEST:
       return {
@@ -20,13 +20,14 @@ const dataReducer = (state = initialState, action) => {
     case FETCH_DATA_SUCCESS:
       return {
         loading: false,
-        data: action.payload,
+        apiData: action.payload,
         error: "",
       };
     case FETCH_DATA_FAILURE:
       return {
+        ...state,
         loading: false,
-        data: [],
+        apiData: [],
         error: action.payload,
       };
 
