@@ -16,13 +16,15 @@ function DataContainer(props) {
     <h2>{apiData.error}</h2>
   ) : (
     <div>
-      <h2>Data List</h2>
-      <div>
-        {apiData &&
-          apiData.apiData &&
-          apiData.apiData.map((data) => (
-            <Home key={data.mission_name} data={data}></Home>
-          ))}
+      <div className="container-fluid">
+        <h1 className="text-center">Technext-Task</h1>
+        <div className="row">
+          {apiData &&
+            apiData.apiData &&
+            apiData.apiData.map((data) => (
+              <Home key={data.mission_name} data={data}></Home>
+            ))}
+        </div>
       </div>
     </div>
   );

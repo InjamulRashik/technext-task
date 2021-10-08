@@ -3,7 +3,7 @@ import DataContainer from "./components/DataContainer";
 
 function App() {
   return (
-    <div className="App">
+    <div>
       <DataContainer />
     </div>
   );
