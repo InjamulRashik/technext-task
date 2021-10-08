@@ -1,9 +1,10 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { fetchData } from "../redux/actions/dataAction";
 import Home from "./Home";
 
 function DataContainer(props) {
+  const [search, setSearch] = useState("");
   const { fetchData, apiData } = props;
   useEffect(() => {
     fetchData();
@@ -16,14 +17,36 @@ function DataContainer(props) {
     <h2>{apiData.error}</h2>
   ) : (
     <div>
-      <div className="container-fluid">
+      <div className="container">
         <h1 className="text-center">Technext-Task</h1>
+        <div className="container d-flex justify-content-center">
+          <input
+            className="form-control w-50 p-2 mb-4 mt-4"
+            type="text"
+            name=""
+            id=""
+            placeholder="Search By Rocket Name"
+            onChange={(event) => {
+              setSearch(event.target.value);
+            }}
+          />
+        </div>
         <div className="row">
           {apiData &&
             apiData.apiData &&
-            apiData.apiData.map((data) => (
-              <Home key={data.mission_name} data={data}></Home>
-            ))}
+            apiData.apiData
+              .filter((data) => {
+                if (search === "") {
+                  return data;
+                } else if (
+                  data.rocket.rocket_name
+                    .toLowerCase()
+                    .includes(search.toLowerCase())
+                ) {
+                  return data;
+                }
+              })
+              .map((data) => <Home key={data.mission_name} data={data}></Home>)}
         </div>
       </div>
     </div>
